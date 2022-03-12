@@ -96,6 +96,13 @@ public class Main {
             }
 
             // TO DO - LINE 9 - 11
+            if( b.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(3) ) == 0 )
+                if( n.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(3) ) == 0 )
+                    s *= -1;
+
+            BigInteger copyOfB = b;
+            b = n.mod(b);
+            n = copyOfB;
         }
 
         b = b.multiply( BigInteger.valueOf(s) );
@@ -108,20 +115,33 @@ public class Main {
         long numberOfOne  = 0;
         long numberOfZero = 0;
 
-        for( long position = 0 ; position < 1_000_000 ; position++ ){
+        for( long position = 0 ; position < 1000000 ; position++ ){
 
+            String jacobi = jacobiSymbol( seed, n );
 
+            if( jacobi.compareTo("1") == 0 ){
+                randomNumberJacobi.append("1");
+                numberOfOne++;
+            }else{
+                randomNumberJacobi.append("0");
+                numberOfZero++;
+            }
 
             seed = seed.add(BigInteger.valueOf(1));
         }
 
-        System.out.println("Jacobi pseudo-random number is:");
+        //System.out.println("Jacobi pseudo-random number is:");
+        System.out.println("\nNumber of 0: " + numberOfZero + " | Number of 1: " + numberOfOne);
     }
 
     public static void main(String[] args) {
 
         setup();
-        BBS();
+        //BBS();
+        //jacobiPseudoRandom();
 
+        BigInteger nr1 = new BigInteger("27129");
+        BigInteger nr2 = new BigInteger("1424743");
+        System.out.println( jacobiSymbol(nr1, nr2));
     }
 }

@@ -61,7 +61,7 @@ public class Main {
         }
 
         System.out.println("Blum-Blum-Shub pseudo-random numbers is: ");
-        //System.out.println(randomNumber);
+        System.out.println(randomNumberBBS);
 
         System.out.println("\nNumber of 0: " + numberOfZero + " | Number of 1: " + numberOfOne);
 
@@ -116,19 +116,21 @@ public class Main {
         }
 
         b = b.multiply( BigInteger.valueOf(s) );
-        return b.toString();
+        return Integer.toString(s);
     }
 
     static void jacobiPseudoRandom(){
+
+        System.out.println("Jacobi pseudo-random number is:");
 
         randomNumberJacobi = new StringBuilder();
         long numberOfOne  = 0;
         long numberOfZero = 0;
 
-        for( long position = 0 ; position < 100 ; position++ ){
+        for( long position = 0 ; position < 1_000_000 ; position++ ){
 
             String jacobi = jacobiSymbol( seed, n );
-            //System.out.println(jacobi);
+
             if( jacobi.compareTo("1") == 0 ){
                 randomNumberJacobi.append("1");
                 numberOfOne++;
@@ -138,10 +140,10 @@ public class Main {
             }
 
             seed = seed.add(BigInteger.valueOf(1));
-
         }
 
-        //System.out.println("Jacobi pseudo-random number is:");
+        System.out.println(randomNumberJacobi);
+        System.out.println();
         System.out.println("\nNumber of 0: " + numberOfZero + " | Number of 1: " + numberOfOne);
     }
 
@@ -151,9 +153,10 @@ public class Main {
         //BBS();
         //jacobiPseudoRandom();
 
-        BigInteger nr1 = new BigInteger("134256139287544233423179392268687970851788538273761494746768964886465967391092377001067138608285696495046053782388184521874750960269008328068841529295181707698825604871839270829570019710186824976858713250752730471419354137096373503960907452651547963489623759066542040096683459770016349373775733544376491487280");
-        BigInteger nr2 = new BigInteger("134256139287544233423179392268687970851788538273761494746768964886465967391092377001067138608285696495046053782388184521874750960269008328068841529295181707698825604871839270829570019710186824976858713250752730471419354137096373503960907452651547963489623759066542040096683459770016349373775733544376491487281");
-        nr1 = nr1.multiply(nr1);
+
+        BigInteger nr1 = new BigInteger("452342");
+        BigInteger nr2 = new BigInteger("5423531");
         System.out.println( jacobiSymbol(nr1, nr2));
+
     }
 }

@@ -84,39 +84,43 @@ public class Main {
 
     static String jacobiSymbol(BigInteger a, BigInteger n){
 
-        BigInteger b;
-        b = a.mod(n);
+        BigInteger b = a.mod(n);
+        BigInteger c = n;
         int s = 1;
 
-        while( b.compareTo( BigInteger.valueOf(2)) >= 0 ){
+        while( b.compareTo(BigInteger.valueOf(2)) >= 0 ){
 
-            while( b.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(0) ) == 0  ){
+            while( b.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(0) ) == 0 ){
                 b = b.divide( BigInteger.valueOf(4) );
             }
 
             if( b.mod( BigInteger.valueOf(2) ).compareTo( BigInteger.valueOf(0) ) == 0 ){
 
-                if( n.mod( BigInteger.valueOf(8) ).compareTo( BigInteger.valueOf(3) ) == 0 || n.mod( BigInteger.valueOf(8) ).compareTo( BigInteger.valueOf(5) ) == 0 )
-                    s *= -1;
+                BigInteger cMod8 = c.mod( BigInteger.valueOf(8) );
 
+                if( cMod8.compareTo( BigInteger.valueOf(3) ) == 0 || cMod8.compareTo( BigInteger.valueOf(5) ) == 0) {
+                    s = -s;
+                }
                 b = b.divide( BigInteger.valueOf(2) );
             }
 
-            if( b.compareTo( BigInteger.valueOf(1) ) == 0 ){
+            if( b.compareTo( BigInteger.valueOf(1) ) == 0 )
                 break;
+
+            BigInteger bMod4 = b.mod( BigInteger.valueOf(4) );
+            BigInteger cMod4 = c.mod( BigInteger.valueOf(4) );
+
+            if( bMod4.compareTo( BigInteger.valueOf(3) ) == 0 &&  cMod4.compareTo( BigInteger.valueOf(3) ) == 0 ){
+                s = -s;
             }
 
-            if( b.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(3) ) == 0 )
-                if( n.mod( BigInteger.valueOf(4) ).compareTo( BigInteger.valueOf(3) ) == 0 )
-                    s *= -1;
-
             BigInteger copyOfB = b;
-            b = n.mod(b);
-            n = copyOfB;
+            b = c.mod(b);
+            c = copyOfB;
         }
 
         b = b.multiply( BigInteger.valueOf(s) );
-        return Integer.toString(s);
+        return b.toString();
     }
 
     static void jacobiPseudoRandom(){
@@ -151,12 +155,13 @@ public class Main {
 
         setup();
         //BBS();
-        //jacobiPseudoRandom();
+        jacobiPseudoRandom();
 
-
+        /*
         BigInteger nr1 = new BigInteger("452342");
         BigInteger nr2 = new BigInteger("5423531");
         System.out.println( jacobiSymbol(nr1, nr2));
+         */
 
     }
 }

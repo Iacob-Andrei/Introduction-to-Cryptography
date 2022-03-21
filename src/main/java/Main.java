@@ -1,6 +1,5 @@
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -51,9 +50,9 @@ public class Main {
             else
                 oneZero.append("0");
 
-        List<Integer> compressedOneZero = LZW.encode(oneZero.toString());
-        System.out.println("Compressed zero-one number length is: " + compressedOneZero.size() + " || Original zero-one number length is: " + oneZero.length());
-        System.out.println("Compression ration is: " + (double)compressedOneZero.size()/lengthOfRandom);
+        String compressedOneZero = LZW.compress(oneZero.toString());
+        System.out.println("Compressed zero-one number length is: " + compressedOneZero.length() + " || Original zero-one number length is: " + oneZero.length());
+        System.out.println("Compression ration is: " + (double)compressedOneZero.length()/lengthOfRandom);
     }
 
     static void BBS(){
@@ -81,10 +80,10 @@ public class Main {
 
         System.out.println("\nNumber of 0: " + numberOfZero + " | Number of 1: " + numberOfOne);
 
-        List<Integer> compressed = LZW.encode(randomNumberBBS.toString());
+        String compressed = LZW.compress(randomNumberBBS.toString());
 
-        System.out.println("Compressed pseudo-random number length is: " + compressed.size() + " || Original pseudo-random number length is: " + randomNumberBBS.length());
-        System.out.println("Compression ration is: " + (double)compressed.size()/lengthOfRandom);
+        System.out.println("Compressed pseudo-random number length is: " + compressed.length() + " || Original pseudo-random number length is: " + randomNumberBBS.length());
+        System.out.println("Compression ration is: " + (double)compressed.length()/lengthOfRandom);
 
         printZeroOneNumberRatio();
     }
@@ -156,10 +155,10 @@ public class Main {
 
         System.out.println("\nNumber of 0:" + numberOfZero + " | Number of 1:" + numberOfOne);
 
-        List<Integer> compressed = LZW.encode(randomNumberJacobi.toString());
+        String compressed = LZW.compress(randomNumberJacobi.toString());
 
-        System.out.println("Compressed pseudo-random number length is: " + compressed.size() + " || Original pseudo-random number length is: " + randomNumberJacobi.length());
-        System.out.println("Compression ration is: " + (double)compressed.size()/lengthOfRandom);
+        System.out.println("Compressed pseudo-random number length is: " + compressed.length() + " || Original pseudo-random number length is: " + randomNumberJacobi.length());
+        System.out.println("Compression ration is: " + (double)compressed.length()/lengthOfRandom);
 
         printZeroOneNumberRatio();
     }
@@ -168,6 +167,6 @@ public class Main {
 
         setup();
         //BBS();
-        jacobiPseudoRandom();
+        //jacobiPseudoRandom();
     }
 }

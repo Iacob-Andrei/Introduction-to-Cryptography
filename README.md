@@ -1,2 +1,3 @@
-# Pseudo-Ramdom Generator
- IC Homework 2. Generating large pseudo random numbers using Blum-Blum-Shub and Jacobi pseudorandom bit generator.
+# Pseudo-Random Generator
+- IC Homework 2 & 3
+- Implement pseudo random byte generator using Blum Blum Shub, Jacoby, LFSR and RC4
